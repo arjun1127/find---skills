@@ -1,0 +1,17 @@
+.technology-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .technology-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .tech-image {
+    height: 200px;
+    object-fit: cover;
+  }
+  

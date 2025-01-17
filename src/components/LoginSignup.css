@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+body.modal-open .custom-backdrop {
+    backdrop-filter: blur(8px); /* Blur only when modal is active */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+}
+
+
+.login-modal-bg {
+    background-image: url('bg.jpeg');
+    border-radius: 8px;
+    color: #17053a;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 75vh;
+    width: 100%;
+}
+
+.login-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.input-box {
+    margin: 1rem 0;
+    position: relative;
+    border: #17053a;
+}
+.input-box input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #012e52;;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border-radius: 50px;
+    outline: none;
+    transition: 0.3s ease;
+    font-size: 1rem;
+    color: #17053a;
+    font-weight: 500;
+}
+.input-box input::placeholder {
+    color: #17053a;
+
+}
+.input-box input:focus {
+    box-shadow: 0 0 5px rgba(1, 46, 82, 0.5); /* Dark blue shadow on focus */
+    outline: none;
+    border-color: #0B87EC;
+}
+
+.input-box i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.remember-forgot-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+.remember-forgot-box input {
+    accent-color: white;
+}
+.remember-forgot-box a {
+    color: rgb(0, 255, 157);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.remember-forgot-box a:hover {
+    color: #2F9CF4;
+}
+.forget-pass{
+    color:#17053a;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: #012e52;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.login-btn:hover {
+    background: #0B87EC;
+}
+
+/* Login Button */
+.btn-outline-light {
+    border: 2px solid transparent; /* Removes inner border */
+    background: linear-gradient(135deg, #0B87EC, #02C8AC); /* Gradient background */
+    color: white; /* Text color */
+    font-weight: 600;
+    padding: 0.5rem 1.5rem; /* Adjust padding for better spacing */
+    border-radius: 50px; /* Smooth rounded edges */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.btn-outline-light:hover {
+    background: linear-gradient(135deg, #02C8AC, #0B87EC); /* Reverse gradient on hover */
+    color: #fff;
+    transform: translateY(-2px); /* Slightly "lift" the button */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+/* Sign Up Button */
+.btn-primary {
+    background: linear-gradient(135deg, #FF6B6B, #F4C430); /* Gradient background */
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #F4C430, #FF6B6B); /* Reverse gradient on hover */
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Add active focus styling for accessibility */
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 4px 2px rgba(0, 255, 157, 0.5);
+    transform: translateY(-1px);
+}
+
+/* Add responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .btn-outline-light,
+    .btn-primary {
+        font-size: 0.9rem;
+        padding: 0.4rem 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .btn-outline-light,
+    .btn-primary {
+        font-size: 0.8rem;
+        padding: 0.3rem 1rem;
+    }
+}
+
+
+.modal-header {
+    border-bottom: 1px solid rgba(18, 1, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-header .btn-close {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    color: white;
+    opacity: 0.7;
+}
+.modal-header .btn-close:hover {
+    opacity: 1;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-backdrop {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+    backdrop-filter: blur(10px);     /* Blur effect */
+}
+
+@media (max-width: 768px) {
+    .login-modal-bg {
+        height: auto; /* Adjust height for smaller screens */
+        width: 90%; /* Ensure it doesn't span the entire width */
+        padding: 1rem; /* Add padding for better spacing */
+    }
+
+    .login-title {
+        font-size: 1.25rem; /* Reduce title size for small screens */
+    }
+
+    .input-box input {
+        font-size: 0.9rem; /* Adjust input text size */
+        padding: 0.5rem 0.75rem 0.5rem 2rem; /* Smaller padding */
+    }
+
+    .login-btn {
+        font-size: 0.9rem; /* Reduce button text size */
+        padding: 0.5rem; /* Smaller button padding */
+    }
+
+    .modal-body {
+        padding: 1rem; /* Reduce modal body padding */
+    }
+}
+
+@media (max-width: 576px) {
+    .login-modal-bg {
+        width: 100%; /* Use the full width on very small devices */
+        padding: 0.5rem;
+    }
+
+    .modal-body {
+        padding: 0.5rem;
+    }
+
+    .login-title {
+        font-size: 1rem; /* Further reduce title size */
+    }
+
+    .input-box input {
+        font-size: 0.8rem; /* Smaller input text size */
+        padding: 0.5rem; /* Reduce padding */
+    }
+
+    .login-btn {
+        font-size: 0.8rem; /* Reduce button size */
+        padding: 0.5rem 0.75rem; /* Adjust padding */
+    }
+}
