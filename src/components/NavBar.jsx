@@ -113,12 +113,12 @@ const NavBar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/chat" onClick={closeNavBar}>
-                Ask Expert
+                Student Section
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/share" onClick={closeNavBar}>
-                Share Anything
+                Teacher Section
               </Link>
             </li>
           </ul>

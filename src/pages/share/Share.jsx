@@ -1,97 +1,182 @@
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './TeacherShareTechnologies.css'; // Minimal custom CSS for specific needs
+import './TeacherShareTechnologies.css'; 
 
 const TeacherShareTechnologies = () => {
-  const [technologyData, setTechnologyData] = useState([]);
+  const [teachersData, setTeachersData] = useState([]);
   const [techName, setTechName] = useState('');
-  const [techDescription, setTechDescription] = useState('');
-  const [techImage, setTechImage] = useState(null);
+  const [teacherName, setTeacherName] = useState('');
+  const [teacherEmail, setTeacherEmail] = useState('');
+  const [teacherBio, setTeacherBio] = useState('');
+  const [profilePhoto, setProfilePhoto] = useState('');
+  const [specialization, setSpecialization] = useState('');
+  const [languageProficiency, setLanguageProficiency] = useState('');
+  const [isTeacher,setTeacher]=useState(false);
 
-  // Handle form submission to add new technology
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    if (!techName || !techDescription || !techImage) {
+    if (!techName || !teacherName || !teacherEmail || !teacherBio || !profilePhoto || !specialization || !languageProficiency) {
       alert('Please fill out all fields.');
       return;
     }
 
-    const newTechnology = {
-      name: techName,
-      description: techDescription,
-      image: URL.createObjectURL(techImage), // Convert image file to a URL
+    const newTeacher = {
+      techName,
+      teacherName,
+      teacherEmail,
+      teacherBio,
+      profilePhoto,
+      specialization,
+      languageProficiency,
     };
 
-    setTechnologyData([...technologyData, newTechnology]);
+    setTeachersData([...teachersData, newTeacher]);
     setTechName('');
-    setTechDescription('');
-    setTechImage(null);
+    setTeacherName('');
+    setTeacherEmail('');
+    setTeacherBio('');
+    setProfilePhoto('');
+    setSpecialization('');
+    setLanguageProficiency('');
+    setTeacher(true);
+  };
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setProfilePhoto(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
-    <div className="teacher-share container py-4">
-      <h3 className="text-center mb-4">Share a Technology</h3>
+    <div className="appContainer">
+      <div className="container teacher-share-container py-4">
+        <h3 className="text-center mb-4 japanese-heading">Become a Teacher</h3>
 
-      {/* Technology Sharing Form */}
-      <div className="mb-4">
-        <form onSubmit={handleFormSubmit}>
-          <div className="mb-3">
-            <label htmlFor="techName" className="form-label">Technology Name</label>
-            <input
-              type="text"
-              id="techName"
-              className="form-control"
-              value={techName}
-              onChange={(e) => setTechName(e.target.value)}
-              required
-            />
-          </div>
+        {/* Teacher Details Form */}
+        <div className="container mb-4 japanese-container">
+          <form onSubmit={handleFormSubmit}>
+            <div className="mb-3">
+              <label htmlFor="techName" className="form-label">Technology Name</label>
+              <input
+                type="text"
+                id="techName"
+                className="form-control"
+                value={techName}
+                onChange={(e) => setTechName(e.target.value)}
+                required
+              />
+            </div>
 
-          <div className="mb-3">
-            <label htmlFor="techDescription" className="form-label">Technology Description</label>
-            <textarea
-              id="techDescription"
-              className="form-control"
-              rows="3"
-              value={techDescription}
-              onChange={(e) => setTechDescription(e.target.value)}
-              required
-            />
-          </div>
+            <div className="mb-3">
+              <label htmlFor="teacherName" className="form-label">Your Name</label>
+              <input
+                type="text"
+                id="teacherName"
+                className="form-control"
+                value={teacherName}
+                onChange={(e) => setTeacherName(e.target.value)}
+                required
+              />
+            </div>
 
-          <div className="mb-3">
-            <label htmlFor="techImage" className="form-label">Technology Image</label>
-            <input
-              type="file"
-              id="techImage"
-              className="form-control"
-              accept="image/*"
-              onChange={(e) => setTechImage(e.target.files[0])}
-              required
-            />
-          </div>
+            <div className="mb-3">
+              <label htmlFor="profilePhoto" className="form-label">Your Profile Photo</label>
+              <input
+                type="file"
+                id="profilePhoto"
+                className="form-control"
+                onChange={handlePhotoChange}
+                required
+              />
+            </div>
 
-          <button type="submit" className="btn btn-primary">Share Technology</button>
-        </form>
-      </div>
+            <div className="mb-3">
+              <label htmlFor="teacherEmail" className="form-label">Your Email</label>
+              <input
+                type="email"
+                id="teacherEmail"
+                className="form-control"
+                value={teacherEmail}
+                onChange={(e) => setTeacherEmail(e.target.value)}
+                required
+              />
+            </div>
 
-      {/* Shared Technologies */}
-      <div className="technologies-section">
-        <h4 className="text-center mb-4">Shared Technologies</h4>
-        <div className="row">
-          {technologyData.map((tech, index) => (
-            <div key={index} className="col-md-4 mb-4">
-              <div className="card h-100 text-center border-0 shadow-sm">
-                <img src={tech.image} alt={tech.name} className="card-img-top tech-image" />
-                <div className="card-body">
-                  <h5 className="card-title">{tech.name}</h5>
-                  <p className="card-text">{tech.description}</p>
+            <div className="mb-3">
+              <label htmlFor="teacherBio" className="form-label">Short Bio</label>
+              <textarea
+                id="teacherBio"
+                className="form-control"
+                rows="3"
+                value={teacherBio}
+                onChange={(e) => setTeacherBio(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="specialization" className="form-label">Specialization</label>
+              <input
+                type="text"
+                id="specialization"
+                className="form-control"
+                value={specialization}
+                onChange={(e) => setSpecialization(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="languageProficiency" className="form-label">Language Proficiency</label>
+              <input
+                type="text"
+                id="languageProficiency"
+                className="form-control"
+                value={languageProficiency}
+                onChange={(e) => setLanguageProficiency(e.target.value)}
+                required
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
+        {/* Displaying Submitted Teachers */}
+        <div className="teachers-section">
+          <h4 className="text-center mb-4">Our Teachers</h4>
+          <div className="row">
+            {teachersData.map((teacher, index) => (
+              <div key={index} className="col-md-6 mb-4">
+                <div className="card h-100 text-center border-0 shadow-sm technology-card">
+                  <div className="card-body">
+                    <img src={teacher.profilePhoto} alt={teacher.teacherName} className="img-fluid rounded-circle mb-3" />
+                    <h5 className="card-title">{teacher.teacherName}</h5>
+                    <p className="card-text"><strong>Email:</strong> {teacher.teacherEmail}</p>
+                    <p className="card-text"><strong>Technology:</strong> {teacher.techName}</p>
+                    <p className="card-text"><strong>Bio:</strong> {teacher.teacherBio}</p>
+                    <p className="card-text"><strong>Specialization:</strong> {teacher.specialization}</p>
+                    <p className="card-text"><strong>Language Proficiency:</strong> {teacher.languageProficiency}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+        {
+          isTeacher && (
+            <div className="live-classes-section text-center mt-4">
+              <h4>Share Live Classes</h4>
+              <button className="btn btn-success">Start a Live Class</button>
+            </div>
+          )
+        }
       </div>
     </div>
   );
